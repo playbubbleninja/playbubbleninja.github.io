@@ -1,43 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bubble Ninja</title>
     <style>
+      * {
+        box-sizing: border-box;
+      }
+
       body {
         margin: 0;
         font-family: "Poppins", "Segoe UI", sans-serif;
-        background: radial-gradient(circle at center, #0a0a0a 20%, #111 100%);
+        background: radial-gradient(circle at center, #050505 0%, #111 100%);
         color: #fff;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         min-height: 100vh;
+        overflow: hidden;
         text-align: center;
         padding: 40px 20px;
       }
 
+      /* Floating bubbles */
+      .bubbles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 0;
+      }
+
+      .bubble {
+        position: absolute;
+        bottom: -100px;
+        background: rgba(0, 200, 255, 0.12);
+        border-radius: 50%;
+        animation: rise 15s infinite ease-in;
+      }
+
+      @keyframes rise {
+        from {
+          transform: translateY(0) scale(1);
+          opacity: 0.4;
+        }
+        to {
+          transform: translateY(-110vh) scale(1.3);
+          opacity: 0;
+        }
+      }
+
+      /* Mascot image glow + pulse */
       .logo {
         width: 180px;
         height: 180px;
         border-radius: 50%;
         box-shadow: 0 0 40px rgba(255, 0, 0, 0.5),
-                    0 0 80px rgba(0, 191, 255, 0.4);
+                    0 0 80px rgba(0, 191, 255, 0.3);
         margin-bottom: 25px;
+        position: relative;
+        z-index: 1;
+        animation: pulse 4s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          box-shadow: 0 0 40px rgba(255, 0, 0, 0.6),
+                      0 0 80px rgba(0, 191, 255, 0.4);
+          transform: scale(1);
+        }
+        50% {
+          box-shadow: 0 0 60px rgba(255, 0, 0, 0.8),
+                      0 0 120px rgba(0, 191, 255, 0.6);
+          transform: scale(1.03);
+        }
       }
 
       h1 {
         font-size: 2.5rem;
         color: #00baff;
         margin-bottom: 0.25rem;
+        z-index: 1;
       }
 
       p.subtitle {
         color: #ccc;
         font-size: 1rem;
         margin-bottom: 2rem;
+        z-index: 1;
       }
 
       .card {
@@ -47,6 +101,8 @@
         backdrop-filter: blur(10px);
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
         max-width: 500px;
+        position: relative;
+        z-index: 1;
       }
 
       h2 {
@@ -68,29 +124,46 @@
         margin-top: 3rem;
         font-size: 0.85rem;
         opacity: 0.7;
+        position: relative;
+        z-index: 1;
       }
     </style>
   </head>
   <body>
-    <img src="app-icon.png" alt="Bubble Ninja Icon" class="logo" />
+    <!-- Floating background bubbles -->
+    <div class="bubbles">
+      <div class="bubble" style="left: 5%; width: 40px; height: 40px; animation-delay: 0s;"></div>
+      <div class="bubble" style="left: 20%; width: 25px; height: 25px; animation-delay: 2s;"></div>
+      <div class="bubble" style="left: 35%; width: 60px; height: 60px; animation-delay: 4s;"></div>
+      <div class="bubble" style="left: 60%; width: 30px; height: 30px; animation-delay: 6s;"></div>
+      <div class="bubble" style="left: 80%; width: 50px; height: 50px; animation-delay: 8s;"></div>
+    </div>
+
+    <!-- Game mascot -->
+    <img src="BubbleMascot.png" alt="Bubble Ninja Icon" class="logo" />
 
     <h1>Bubble Ninja</h1>
-    <p class="subtitle">Fast. Flashy. Fierce. The ultimate bubble-popping arcade adventure.</p>
+    <p class="subtitle">
+      Fast. Flashy. Fierce. The ultimate bubble-popping arcade adventure.
+    </p>
 
     <div class="card">
       <h2>Support</h2>
       <p>
-        Need help? Contact us at<br>
+        Need help? Contact us at<br />
         <a href="mailto:tingyamaany@gmail.com">tingyamaany@gmail.com</a>
       </p>
 
       <h2>app-ads.txt</h2>
       <p>
-        View our authorized ads file:<br>
+        View our authorized ads file:<br />
         <a href="/app-ads.txt">playbubbleninja.github.io/app-ads.txt</a>
       </p>
     </div>
 
     <footer>© 2025 Bubble Ninja. All rights reserved.</footer>
+  </body>
+</html>
+
   </body>
 </html>
