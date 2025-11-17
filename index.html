@@ -1,19 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bubble Ninja</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", "Segoe UI", sans-serif;
+        background: radial-gradient(circle at center, #0a0a0a 20%, #111 100%);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+        padding: 40px 20px;
+      }
+
+      .logo {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        box-shadow: 0 0 40px rgba(255, 0, 0, 0.5),
+                    0 0 80px rgba(0, 191, 255, 0.4);
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        color: #00baff;
+        margin-bottom: 0.25rem;
+      }
+
+      p.subtitle {
+        color: #ccc;
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 2rem 3rem;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        max-width: 500px;
+      }
+
+      h2 {
+        color: #ff4b4b;
+        margin-top: 1.5rem;
+      }
+
+      a {
+        color: #00baff;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      footer {
+        margin-top: 3rem;
+        font-size: 0.85rem;
+        opacity: 0.7;
+      }
+    </style>
   </head>
-  <body style="font-family: sans-serif; text-align: center; padding: 40px;">
+  <body>
+    <img src="app-icon.png" alt="Bubble Ninja Icon" class="logo" />
+
     <h1>Bubble Ninja</h1>
-    <p>The official website for the Bubble Ninja mobile game.</p>
+    <p class="subtitle">Fast. Flashy. Fierce. The ultimate bubble-popping arcade adventure.</p>
 
-    <h2>Support</h2>
-    <p>If you need help, contact us at:</p>
-    <p><a href="mailto:playbubbleninja@gmail.com">playbubbleninja@gmail.com</a></p>
+    <div class="card">
+      <h2>Support</h2>
+      <p>
+        Need help? Contact us at<br>
+        <a href="mailto:tingyamaany@gmail.com">tingyamaany@gmail.com</a>
+      </p>
 
-    <h2>app-ads.txt</h2>
-    <p>You can find our app-ads.txt file here:</p>
-    <p><a href="/app-ads.txt">playbubbleninja.github.io/app-ads.txt</a></p>
+      <h2>app-ads.txt</h2>
+      <p>
+        View our authorized ads file:<br>
+        <a href="/app-ads.txt">playbubbleninja.github.io/app-ads.txt</a>
+      </p>
+    </div>
+
+    <footer>© 2025 Bubble Ninja. All rights reserved.</footer>
   </body>
 </html>
