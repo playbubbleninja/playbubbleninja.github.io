@@ -54,29 +54,29 @@
         }
       }
 
-      /* Mascot image glow + pulse */
+      /* Mascot image */
       .logo {
         width: 180px;
         height: 180px;
+        object-fit: contain;
         border-radius: 50%;
-        box-shadow: 0 0 40px rgba(255, 0, 0, 0.5),
-                    0 0 80px rgba(0, 191, 255, 0.3);
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent 70%);
+        box-shadow: 0 0 25px rgba(255, 0, 0, 0.5), 0 0 60px rgba(0, 191, 255, 0.3);
         margin-bottom: 25px;
         position: relative;
         z-index: 1;
         animation: pulse 4s ease-in-out infinite;
+        transform: scale(1.1);
       }
 
       @keyframes pulse {
         0%, 100% {
-          box-shadow: 0 0 40px rgba(255, 0, 0, 0.6),
-                      0 0 80px rgba(0, 191, 255, 0.4);
-          transform: scale(1);
+          box-shadow: 0 0 25px rgba(255, 0, 0, 0.6), 0 0 60px rgba(0, 191, 255, 0.4);
+          transform: scale(1.1);
         }
         50% {
-          box-shadow: 0 0 60px rgba(255, 0, 0, 0.8),
-                      0 0 120px rgba(0, 191, 255, 0.6);
-          transform: scale(1.03);
+          box-shadow: 0 0 40px rgba(255, 0, 0, 0.8), 0 0 100px rgba(0, 191, 255, 0.6);
+          transform: scale(1.15);
         }
       }
 
@@ -120,6 +120,22 @@
         text-decoration: underline;
       }
 
+      .store-links {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .store-links a img {
+        height: 55px;
+        transition: transform 0.25s ease;
+      }
+
+      .store-links a img:hover {
+        transform: scale(1.08);
+      }
+
       footer {
         margin-top: 3rem;
         font-size: 0.85rem;
@@ -147,6 +163,15 @@
       Fast. Flashy. Fierce. The ultimate bubble-popping arcade adventure.
     </p>
 
+    <div class="store-links">
+      <a href="https://apps.apple.com/us/app/bubble-ninja/id6754294116" target="_blank" rel="noopener">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.amaanatif.bubbleninja&hl=en" target="_blank" rel="noopener">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
+      </a>
+    </div>
+
     <div class="card">
       <h2>Support</h2>
       <p>
@@ -162,8 +187,5 @@
     </div>
 
     <footer>© 2025 Bubble Ninja. All rights reserved.</footer>
-  </body>
-</html>
-
   </body>
 </html>
