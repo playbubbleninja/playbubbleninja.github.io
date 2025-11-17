@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bubble Ninja</title>
     <style>
-      * {
-        box-sizing: border-box;
-      }
+      * { box-sizing: border-box; }
 
       body {
         margin: 0;
@@ -17,109 +15,109 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        overflow: hidden;
         text-align: center;
+        min-height: 100vh;
+        overflow-x: hidden;
         padding: 40px 20px;
+        position: relative;
       }
 
       /* Floating bubbles */
       .bubbles {
-        position: fixed;
-        top: 0;
-        left: 0;
+        position: absolute;
+        inset: 0;
         width: 100%;
         height: 100%;
         overflow: hidden;
         z-index: 0;
-        pointer-events: none; /* Important — prevents blocking clicks */
+        pointer-events: none;
       }
-
       .bubble {
         position: absolute;
-        bottom: -100px;
+        bottom: -120px;
         background: rgba(0, 200, 255, 0.12);
         border-radius: 50%;
         animation: rise 15s infinite ease-in;
       }
-
       @keyframes rise {
-        from {
-          transform: translateY(0) scale(1);
-          opacity: 0.4;
-        }
-        to {
-          transform: translateY(-110vh) scale(1.3);
-          opacity: 0;
-        }
+        from { transform: translateY(0); opacity: 0.35; }
+        to { transform: translateY(-110vh) scale(1.2); opacity: 0; }
       }
 
-      /* Mascot image (fix for padding) */
-      .logo {
-        width: 150px;
-        height: 150px;
-        object-fit: contain;
+      /* --- FIXED MASCOT PADDING (CSS "crop") --- */
+      .logo-wrapper {
+        width: 180px;
+        height: 180px;
         border-radius: 50%;
-        margin-top: -20px; /* visually trims transparent space */
-        margin-bottom: 20px;
-        background: radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent 70%);
-        box-shadow: 0 0 25px rgba(255, 0, 0, 0.5),
-          0 0 60px rgba(0, 191, 255, 0.3);
+        overflow: hidden;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 40px rgba(255, 0, 0, 0.5),
+                    0 0 80px rgba(0, 191, 255, 0.3);
         animation: pulse 4s ease-in-out infinite;
-        position: relative;
-        z-index: 1;
+        margin-bottom: 20px;
+        z-index: 2;
+      }
+
+      .logo-wrapper img {
+        width: 130%; /* Crops transparent padding */
+        height: auto;
+        transform: translateY(3%);
       }
 
       @keyframes pulse {
         0%, 100% {
-          box-shadow: 0 0 25px rgba(255, 0, 0, 0.6),
-                      0 0 60px rgba(0, 191, 255, 0.4);
-          transform: scale(1.05);
+          box-shadow: 0 0 40px rgba(255, 0, 0, 0.6),
+                      0 0 80px rgba(0, 191, 255, 0.4);
+          transform: scale(1);
         }
         50% {
-          box-shadow: 0 0 40px rgba(255, 0, 0, 0.8),
-                      0 0 100px rgba(0, 191, 255, 0.6);
-          transform: scale(1.1);
+          box-shadow: 0 0 60px rgba(255, 0, 0, 0.8),
+                      0 0 120px rgba(0, 191, 255, 0.6);
+          transform: scale(1.03);
         }
       }
 
       h1 {
         font-size: 2.5rem;
         color: #00baff;
-        margin-bottom: 0.25rem;
-        z-index: 1;
+        margin-bottom: 0.3rem;
+        z-index: 2;
       }
 
       p.subtitle {
         color: #ccc;
+        margin-bottom: 1.8rem;
+        z-index: 2;
         font-size: 1rem;
-        margin-bottom: 1.5rem;
-        z-index: 1;
       }
 
+      /* --- STORE BADGES --- */
       .store-links {
-        margin-top: 0.5rem;
-        margin-bottom: 2rem;
         display: flex;
-        justify-content: center;
         gap: 20px;
-        position: relative;
+        margin-bottom: 30px;
         z-index: 2;
       }
 
-      .store-links a img {
-        height: 55px;
-        border-radius: 10px;
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      .store-btn {
+        width: 165px;
+        transition: transform 0.2s ease, filter 0.2s ease;
+        cursor: pointer;
       }
 
-      .store-links a img:hover {
-        transform: scale(1.1);
-        box-shadow: 0 0 20px rgba(0, 191, 255, 0.6),
-                    0 0 30px rgba(255, 0, 0, 0.3);
+      .store-btn:hover {
+        transform: scale(1.12);
+        filter: drop-shadow(0 0 12px #00baff);
       }
 
+      .store-btn:active {
+        transform: scale(0.96);
+      }
+
+      /* Info card */
       .card {
         background: rgba(255, 255, 255, 0.08);
         padding: 2rem 3rem;
@@ -127,59 +125,55 @@
         backdrop-filter: blur(10px);
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
         max-width: 500px;
-        position: relative;
-        z-index: 1;
+        z-index: 2;
       }
 
-      h2 {
-        color: #ff4b4b;
-        margin-top: 1.5rem;
-      }
+      h2 { color: #ff4b4b; margin-top: 1.5rem; }
 
       a {
         color: #00baff;
-        text-decoration: none;
         font-weight: 600;
+        text-decoration: none;
       }
-
-      a:hover {
-        text-decoration: underline;
-      }
+      a:hover { text-decoration: underline; }
 
       footer {
         margin-top: 3rem;
         font-size: 0.85rem;
         opacity: 0.7;
-        position: relative;
-        z-index: 1;
+        z-index: 2;
       }
     </style>
   </head>
+
   <body>
-    <!-- Floating background bubbles -->
+    <!-- Floating bubbles -->
     <div class="bubbles">
       <div class="bubble" style="left: 5%; width: 40px; height: 40px; animation-delay: 0s;"></div>
-      <div class="bubble" style="left: 20%; width: 25px; height: 25px; animation-delay: 2s;"></div>
-      <div class="bubble" style="left: 35%; width: 60px; height: 60px; animation-delay: 4s;"></div>
+      <div class="bubble" style="left: 22%; width: 25px; height: 25px; animation-delay: 2s;"></div>
+      <div class="bubble" style="left: 38%; width: 60px; height: 60px; animation-delay: 4s;"></div>
       <div class="bubble" style="left: 60%; width: 30px; height: 30px; animation-delay: 6s;"></div>
       <div class="bubble" style="left: 80%; width: 50px; height: 50px; animation-delay: 8s;"></div>
     </div>
 
-    <!-- Game mascot -->
-    <img src="BubbleMascot.png" alt="Bubble Ninja Icon" class="logo" />
+    <!-- Mascot with cropping fix -->
+    <div class="logo-wrapper">
+      <img src="BubbleMascot.png" alt="Bubble Ninja Icon" />
+    </div>
 
     <h1>Bubble Ninja</h1>
-    <p class="subtitle">
-      Fast. Flashy. Fierce. The ultimate bubble-popping arcade adventure.
-    </p>
+    <p class="subtitle">Fast. Flashy. Fierce. The ultimate bubble-popping arcade adventure.</p>
 
-    <!-- App store buttons -->
+    <!-- App Store / Google Play Buttons -->
     <div class="store-links">
-      <a href="https://apps.apple.com/us/app/bubble-ninja/id6754294116" target="_blank" rel="noopener">
-        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+      <a href="https://apps.apple.com/us/app/bubble-ninja/id6754294116" target="_blank">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+             class="store-btn" alt="Download on the App Store">
       </a>
-      <a href="https://play.google.com/store/apps/details?id=com.amaanatif.bubbleninja&hl=en" target="_blank" rel="noopener">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
+
+      <a href="https://play.google.com/store/apps/details?id=com.amaanatif.bubbleninja&hl=en" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+             class="store-btn" alt="Get it on Google Play">
       </a>
     </div>
 
@@ -200,3 +194,4 @@
     <footer>© 2025 Bubble Ninja. All rights reserved.</footer>
   </body>
 </html>
+
